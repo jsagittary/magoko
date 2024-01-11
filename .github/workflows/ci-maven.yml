@@ -1,0 +1,26 @@
+name: CI Maven
+
+on:
+  push:
+    branches: main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v3
+
+      - name: 安装 Jdk17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+
+      - name: 检查 Google 代码风格
+        run: ./mvnw spotless:check
+
+      - name: 执行 Maven 构建
+        run: ./mvnw package -B
