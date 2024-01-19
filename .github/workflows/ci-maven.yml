@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: 检出代码
+      - name: 检出 MagOKO 代码
         uses: actions/checkout@v3
 
       - name: 安装 Jdk17
@@ -18,6 +18,15 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
           cache: 'maven'
+
+      - name: 检出 Doodle 代码
+        uses: actions/checkout@v4
+        with:
+          repository: deepinthink/doodle
+          path: deepinthink/doodle
+
+      - name: 安装 Doodle 到本地
+        run: cd deepinthink/doodle && ./mvnw install
 
       - name: 检查 Google 代码风格
         run: ./mvnw spotless:check

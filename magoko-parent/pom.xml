@@ -12,8 +12,18 @@
   </parent>
   <artifactId>magoko-parent</artifactId>
   <packaging>pom</packaging>
+  <properties>
+    <doodle.version>0.0.1-SNAPSHOT</doodle.version>
+  </properties>
   <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>org.deepinthink.doodle</groupId>
+        <artifactId>doodle-dependencies</artifactId>
+        <version>${doodle.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
       <dependency>
         <groupId>org.deepinthink.magoko</groupId>
         <artifactId>magoko-dependencies</artifactId>
